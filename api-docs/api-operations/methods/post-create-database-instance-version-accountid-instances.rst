@@ -28,60 +28,60 @@ The following table lists the required and optional attributes for Create instan
 
 .. table:: Required and optional attributes for Create instance
 
-    
-    +--------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |Applies To    |Name                                                                                                          |Description                                                                                                     |Required |
-    +==============+==============================================================================================================+================================================================================================================+=========+
-    |Instance      |flavorRef                                                                                                     |Reference (href) to a flavor as specified in the response from the List Flavors API call. This is the actual    |Yes      |
-    |              |                                                                                                              |URI as specified by the href field in the link. Refer to the List Flavors response examples that follow for an  |         |
-    |              |                                                                                                              |example of the flavorRef. Note: Rather than the flavor URI, you can also pass the flavor id (integer) as        |         |
-    |              |                                                                                                              |the value for flavorRef. Refer to :rax-devdocs:`List flavors <cloud-databases/v1/developer-guide/#list-flavors>`|         |
-    |              |                                                                                                              |for details.                                                                                                    |         |
-    |              +--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |              |(volume) size                                                                                                 |Specifies the volume size in gigabytes (GB). The value specified must be between 1 and 300.                     |Yes      |
-    |              +--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |              |name                                                                                                          |Name of the instance to create. The length of the name is limited to 255 characters and any characters are      |No       |
-    |              |                                                                                                              |permitted                                                                                                       |         |
-    |              +--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |              |configuration                                                                                                 |Identifier of the configuration group to associate with the instance.                                           |No       |
-    |              +--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |              |(datastore)                                                                                                   |Name or uuid of the datastore version and type to associate with the instance. If the datastore is not          |No       |
-    |              |version / type                                                                                                |specified, it defaults to mysql.                                                                                |         |
-    +--------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |Database      |name                                                                                                          |Specifies database names for creating databases on instance creation. Refer to :rax-devdocs:`Create database    |No       |
-    |              |                                                                                                              |<cloud-databases/v1/developer-guide/#create-database>`                                                          |         |
-    |              |                                                                                                              |for the required json format.                                                                                   |         |
-    |              +--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |              |character_set                                                                                                 |Set of symbols and encodings. The default character set is ``utf8``.                                            |No       |
-    |              +--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |              |collate                                                                                                       |Set of rules for comparing characters in a character set. The default value for collate is                      |No       |
-    |              |                                                                                                              |``utf8_general_ci``.                                                                                            |         |
-    +--------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |User          |name                                                                                                          |Specifies user name for the database on instance creation. Refer to :rax-devdocs:`Create user                   |No       |
-    |              |                                                                                                              |<cloud-databases/v1/developer-guide/#create-user>`                                                              |         |
-    |              |                                                                                                              |for the required json format.                                                                                   |         |
-    |              +--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |              |password                                                                                                      |Specifies password for those users on instance creation. Refer to :rax-devdocs:`Create user                     |No       |
-    |              |                                                                                                              |<cloud-databases/v1/developer-guide/#create-user>`                                                              |         |
-    |              |                                                                                                              |for the required json format.                                                                                   |         |
-    |              +--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |              |(database)                                                                                                    |Specifies names of databases that those users can access on instance creation. Refer to                         |No       |
-    |              |name                                                                                                          |:rax-devdocs:`Create user <cloud-databases/v1/developer-guide/#create-user>`                                    |         |
-    |              |                                                                                                              |for the required json format.                                                                                   |         |
-    |              +--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |              |host                                                                                                          |Specifies the host from which a user is allowed to connect to the database. Possible values are a string        |No       |
-    |              |                                                                                                              |containing an IPv4 address or "%" to allow connecting from any host. Refer to :ref:`User access restriction by  |         |
-    |              |                                                                                                              |host <cdb-dg-generalapi-security-restriction>` for details.                                                     |         |
-    |              |                                                                                                              |If ``host`` is not specified, it defaults to "%".                                                               |         |
-    +--------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    |Restore       |restorePoint                                                                                                  |Specifies the backup id from which to restore the database instance. **Note:** When you execute the Restore     |No       |
-    |              |                                                                                                              |Backup operation, a new database instance is created to store the backup whose id is specified by the           |         |
-    |              |                                                                                                              |``restorePoint`` attribute. All users/passwords/access that were on the instance at the time of the backup      |         |
-    |              |                                                                                                              |will be restored along with the databases. You can create new users or databases if you want, but they cannot   |         |
-    |              |                                                                                                              |be the same as the ones from the instance that was backed up. Refer to the Create Database Instance Restore     |         |
-    |              |                                                                                                              |Request and Response examples for the required json format and details.                                         |         |
-    +--------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-    
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Name                              |Description                                                                                                     |Required |
+    +==================================+================================================================================================================+=========+
+    |Instance.flavorRef                |Reference (href) to a flavor as specified in the response from the List Flavors API call. This is the actual    |Yes      |
+    |                                  |URI as specified by the href field in the link. Refer to the List Flavors response examples that follow for an  |         |
+    |                                  |example of the flavorRef. Note: Rather than the flavor URI, you can also pass the flavor id (integer) as        |         |
+    |                                  |the value for flavorRef. Refer to :rax-devdocs:`List flavors <cloud-databases/v1/developer-guide/#list-flavors>`|         |
+    |                                  |for details.                                                                                                    |         |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.volume.size              |Specifies the volume size in gigabytes (GB). The value specified must be between 1 and 300.                     |Yes      |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.name                     |Name of the instance to create. The length of the name is limited to 255 characters and any characters are      |No       |
+    |                                  |permitted                                                                                                       |         |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.configuration            |Identifier of the configuration group to associate with the instance.                                           |No       |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.datastore.version        |Datastore version to associate with the instance. If the datastore is not provided, the                         |No       |
+    |                                  |default value is "5.1".                                                                                         |         |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.datastore.type           |Datastore type to associate with the instance. If the datastore is not provided, the default value is "mysql".  |No       |
+    +--------------+-------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.database.name            |Specifies database names for creating databases on instance creation. Refer to :rax-devdocs:`Create database    |No       |
+    |                                  |<cloud-databases/v1/developer-guide/#create-database>`                                                          |         |
+    |                                  |for the required json format.                                                                                   |         |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.database.character_set   |Set of symbols and encodings. The default character set is ``utf8``.                                            |No       |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.database.collate         |Set of rules for comparing characters in a character set. The default value for collate is                      |No       |
+    |                                  |``utf8_general_ci``.                                                                                            |         |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.user.name                |Specifies user name for the database on instance creation. Refer to :rax-devdocs:`Create user                   |No       |
+    |                                  |<cloud-databases/v1/developer-guide/#create-user>`                                                              |         |
+    |                                  |for the required json format.                                                                                   |         |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.user.password            |Specifies password for those users on instance creation. Refer to :rax-devdocs:`Create user                     |No       |
+    |                                  |<cloud-databases/v1/developer-guide/#create-user>`                                                              |         |
+    |                                  |for the required json format.                                                                                   |         |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.user.databases.name      |Specifies names of databases that those users can access on instance creation. Refer to                         |No       |
+    |                                  |:rax-devdocs:`Create user <cloud-databases/v1/developer-guide/#create-user>`                                    |         |
+    |                                  |for the required json format.                                                                                   |         |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.user.databases.host      |Specifies the host from which a user is allowed to connect to the database. Possible values are a string        |No       |
+    |                                  |containing an IPv4 address or "%" to allow connecting from any host. Refer to :ref:`User access restriction by  |         |
+    |                                  |host <cdb-dg-generalapi-security-restriction>` for details.                                                     |         |
+    |                                  |If ``host`` is not specified, it defaults to "%".                                                               |         |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+    |Instance.restorePoint.backupRef   |Specifies the backup id from which to restore the database instance. **Note:** When you execute the Restore     |No       |
+    |                                  |Backup operation, a new database instance is created to store the backup whose id is specified by the           |         |
+    |                                  |``restorePoint`` attribute. All users/passwords/access that were on the instance at the time of the backup      |         |
+    |                                  |will be restored along with the databases. You can create new users or databases if you want, but they cannot   |         |
+    |                                  |be the same as the ones from the instance that was backed up. Refer to the Create Database Instance Restore     |         |
+    |                                  |Request and Response examples for the required json format and details.                                         |         |
+    +----------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
 
 Refer to :ref:`Database instance status <cdb-dg-generalapi-dbinstance>` for a list of possible database instance statuses that may be returned.
 
